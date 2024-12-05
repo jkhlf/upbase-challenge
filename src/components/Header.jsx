@@ -1,10 +1,16 @@
 import { Calendar, User, MessageCircle, Building2, LayoutList } from 'lucide-react';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import { useLocation } from 'react-router-dom';
 
 function Header() {
     const [activeLink, setActiveLink] = useState('/');
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const location = useLocation();
+
+    useEffect(() => {
+        setActiveLink(location.pathname);
+    }, [location]);
 
     const handleLinkClick = (link) => {
         setActiveLink(link);
